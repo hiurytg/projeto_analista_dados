@@ -1,10 +1,8 @@
-import requests
 import pandas as pd
 import streamlit as st
-import pandasql as psql
 import sqlite3 as sqlite
 
-source = "C:\\Users\\Hiurytg.000\\Desktop\\projeto_ipm_analista_dados\\licitacoes.csv"
+source = "licitacoes.csv"
 conn   = sqlite.connect('licitacoes.db')
 df     = pd.read_csv(source, delimiter =';', on_bad_lines = 'skip')
 query  = "SELECT * FROM tblicitacoes limit 20" 
