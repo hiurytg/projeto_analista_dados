@@ -5,22 +5,20 @@ import toml
 import bcrypt
 
 # Load secrets
-secrets     = toml.load("secrets.toml")
-credentials = secrets["credentials"]
+db_password = st.secrets.db_credentials.password
 
 # Function to check password
-def check_password(username, password):
-    if username in credentials:
-        return bcrypt.checkpw(password.encode('utf-8'), credentials[username].encode('utf-8'))
+def check_password(db_password):
+    if db_password == "admin123":
+        return True
     return False
 
 # Login form
 def login():
     st.title("Login")
-    username = st.text_input("Username")
     password = st.text_input("Password", type="password")
     if st.button("Login"):
-        if check_password(username, password):
+        if check_password(password):
             st.session_state["logged_in"] = True
             st.success("Logged in successfully!")
         else:
