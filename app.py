@@ -8,8 +8,8 @@ import bcrypt
 db_password = st.secrets.db_credentials.password
 
 # Function to check password
-def check_password(db_password):
-    if db_password == "admin123":
+def check_password(password):
+    if db_password == password:
         return True
     return False
 
@@ -21,6 +21,7 @@ def login():
         if check_password(password):
             st.session_state["logged_in"] = True
             st.success("Logged in successfully!")
+            st.experimental_rerun()
         else:
             st.error("Invalid username or password")
 
