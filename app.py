@@ -21,14 +21,12 @@ def login():
         if check_password(password):
             st.session_state["logged_in"] = True
             st.success("Logged in successfully!")
-            st.experimental_rerun()
+            main()
         else:
             st.error("Invalid username or password")
 
-# Main app logic
-if "logged_in" not in st.session_state:
-    login()
-else:    
+    
+def main():    
     source = "licitacoes.csv"
     conn   = sqlite.connect('licitacoes.db')
     df     = pd.read_csv(source, delimiter =';', on_bad_lines = 'skip')
@@ -50,3 +48,8 @@ else:
     
     conn.close()
     
+# Check if the user is logged in
+if "logged_in" not in st.session_state:
+    login()  # Show the login form if not logged in
+else:
+    main()  # Show the main app if logged in
