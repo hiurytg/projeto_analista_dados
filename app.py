@@ -34,18 +34,22 @@ def main():
     if st.button("Run Query"):
         st.rerun()
 
-    source = "licitacoes.csv"
-    conn   = sqlite.connect('licitacoes.db')
-    df     = pd.read_csv(source, delimiter =';', on_bad_lines = 'skip')
-    
-    df.to_sql('tblicitacoes', conn, if_exists='replace') 
-    
-    result_df = pd.read_sql_query(query, conn)
-    
-    # Streamlit
-    st.title("Dados de licitações no Brasil")
-    st.write("Tabela oficial .gov:")
-    st.dataframe(result_df)
+    try:
+        source = "licitacoes.csv"
+        conn   = sqlite.connect('licitacoes.db')
+        df     = pd.read_csv(source, delimiter =';', on_bad_lines = 'skip')
+        
+        df.to_sql('tblicitacoes', conn, if_exists='replace') 
+        
+        result_df = pd.read_sql_query(query, conn)
+        
+        # Streamlit
+        st.title("Dados de licitações no Brasil")
+        st.write("Tabela oficial .gov:")
+        st.dataframe(result_df)
+    except Exception as e:
+        # Display the error message
+        st.error(f"Error executing query: {e}")
     
     # Add more interactive elements as needed
     if st.button('Show Summary'):
