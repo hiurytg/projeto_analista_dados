@@ -16,16 +16,15 @@ def check_password(password):
 
 # Login form
 def login():
-    with st.empty():
-        st.title("Login")
-        password = st.text_input("Password", type="password")
-        if st.button("Login"):
-            if check_password(password):
-                st.session_state["logged_in"] = True
-                st.success("Logged in successfully!")
-                main()
-            else:
-                st.error("Invalid username or password")
+    st.title("Login")
+    password = st.text_input("Password", type="password")
+    if st.button("Login"):
+        if check_password(password):
+            st.session_state["logged_in"] = True
+            st.success("Logged in successfully!")
+            main()
+        else:
+            st.error("Invalid username or password")
 
     
 def main():    
