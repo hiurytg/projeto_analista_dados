@@ -16,19 +16,19 @@ def check_password(password):
 
 # Login form
 def login():
-    st.title("Login")
-    password = st.text_input("Password", type="password")
-    if st.button("Login"):
-        if check_password(password):
-            st.session_state["logged_in"] = True
-            st.success("Logged in successfully!")
-            main()
-        else:
-            st.error("Invalid username or password")
+    with st.empty:
+        st.title("Login")
+        password = st.text_input("Password", type="password")
+        if st.button("Login"):
+            if check_password(password):
+                st.session_state["logged_in"] = True
+                st.success("Logged in successfully!")
+                main()
+            else:
+                st.error("Invalid username or password")
 
     
 def main():    
-    placeholder.empty()
     source = "licitacoes.csv"
     conn   = sqlite.connect('licitacoes.db')
     df     = pd.read_csv(source, delimiter =';', on_bad_lines = 'skip')
@@ -37,7 +37,6 @@ def main():
     df.to_sql('tblicitacoes', conn, if_exists='replace') 
     
     result_df = pd.read_sql_query(query, conn)
-    
     
     # Streamlit
     st.title("Dados de licitações no Brasil")
@@ -54,4 +53,5 @@ def main():
 if "logged_in" not in st.session_state:
     login()  # Show the login form if not logged in
 else:
+    placeholder.empty()
     main()  # Show the main app if logged in
