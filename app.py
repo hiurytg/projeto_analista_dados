@@ -27,10 +27,14 @@ def login():
 
     
 def main():    
+    query = "SELECT * FROM tblicitacoes limit 20" 
+    query = st.text_input("Query")
+    if st.button("Run Query"):
+        st.rerun()
+
     source = "licitacoes.csv"
     conn   = sqlite.connect('licitacoes.db')
     df     = pd.read_csv(source, delimiter =';', on_bad_lines = 'skip')
-    query  = "SELECT * FROM tblicitacoes limit 20" 
     
     df.to_sql('tblicitacoes', conn, if_exists='replace') 
     
