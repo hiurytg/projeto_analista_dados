@@ -21,7 +21,8 @@ def login():
         if check_password(password):
             st.session_state["logged_in"] = True
             st.success("Logged in successfully!")
-            #main()
+            st.empty()
+            main()
         else:
             st.error("Invalid username or password")
 
