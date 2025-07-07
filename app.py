@@ -16,7 +16,7 @@ def check_password(password):
 
 # Login form
 def login():
-    with st.empty:
+    with st.empty():
         st.title("Login")
         password = st.text_input("Password", type="password")
         if st.button("Login"):
