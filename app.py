@@ -27,8 +27,10 @@ def login():
 
     
 def main():    
-    query = "SELECT * FROM tblicitacoes limit 20" 
     query = st.text_input("Query")
+    if (query == ''):
+        query = "SELECT * FROM tblicitacoes limit 20" 
+        
     if st.button("Run Query"):
         st.rerun()
 
