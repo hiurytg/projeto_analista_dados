@@ -21,13 +21,13 @@ def login():
         if check_password(password):
             st.session_state["logged_in"] = True
             st.success("Logged in successfully!")
-            st.empty()
             main()
         else:
             st.error("Invalid username or password")
 
     
 def main():    
+    st.empty()
     source = "licitacoes.csv"
     conn   = sqlite.connect('licitacoes.db')
     df     = pd.read_csv(source, delimiter =';', on_bad_lines = 'skip')
