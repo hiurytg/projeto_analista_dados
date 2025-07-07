@@ -51,7 +51,7 @@ def main():
 
 # Check if the user is logged in
 if "logged_in" not in st.session_state:
+    placeholder.empty()
     login()  # Show the login form if not logged in
 else:
-    placeholder.empty()
     main()  # Show the main app if logged in
