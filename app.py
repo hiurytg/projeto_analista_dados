@@ -27,7 +27,7 @@ def login():
 
     
 def main():    
-    st.empty()
+    st.empty().empty()
     source = "licitacoes.csv"
     conn   = sqlite.connect('licitacoes.db')
     df     = pd.read_csv(source, delimiter =';', on_bad_lines = 'skip')
