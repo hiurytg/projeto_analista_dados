@@ -35,7 +35,7 @@ def main():
         st.rerun()
 
     try:
-        source = "licitacoes.csv"
+        source = "https://drive.google.com/uc?id=1TQhLNYTpIddTtZxZzE36UUKfh3RFUqrb"
         conn   = sqlite.connect('licitacoes.db')
         df     = pd.read_csv(source, delimiter =';', on_bad_lines = 'skip')
         
